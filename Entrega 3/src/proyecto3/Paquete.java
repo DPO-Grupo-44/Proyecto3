@@ -42,4 +42,12 @@ public class Paquete {
 	public void AgregarPacks(Paquete pack) {
 		subpacks.add(pack);
 	}
+	
+	public void EliminarTareas(Tarea tar) {
+		listatars.remove(tar);
+	}
+	
+	public void EliminarPacks(Paquete pack) {
+		subpacks.remove(pack);
+	}
 }
