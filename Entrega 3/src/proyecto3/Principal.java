@@ -128,16 +128,29 @@ public class Principal {
 	
 	public void realizarModificacionesPack(Paquete pack, int opcion_seleccionada) {
 		if (opcion_seleccionada == 1) {
-			
+			String nombre = input("Nuevo nombre");
+			pack.setNombre(nombre);
 		}	
 		else if (opcion_seleccionada == 2)
 		{
-			
-			crearnuevoProyecto();
+			String descr = input("Nueva descripcion");
+			pack.setNombre(descr);
 		}
 		else if (opcion_seleccionada == 3) 
 		{
-			
+			int queHacer = Integer.parseInt(input("(1- Agregar, 2- Eliminar"));
+			if (queHacer == 1) {
+				if (pack.getTareas().size() > 0) {
+					System.out.println("No se puede agregar en la ubicacion seleccionada");
+				}
+				else {
+					String nuevoNom = input("Ingrese el nombre del paquete");
+					String nuevoDes = input("Ingrese la descripcion");
+					Paquete subPaquete = new Paquete(nuevoNom, nuevoDes);
+					pack.AgregarPacks(subPaquete);
+				}
+				
+			}
 		}
 	}
 	
