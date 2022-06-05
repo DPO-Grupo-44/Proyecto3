@@ -23,8 +23,8 @@ public class Paquete {
 		nombre = tnombre;
 	}
 	
-	public void setDescr(String tdes) {
-		descr = tdes;
+	public void setDescr(String tdescr) {
+		descr = tdescr;
 	}
 	
 	public ArrayList<Tarea> getTareas(){
