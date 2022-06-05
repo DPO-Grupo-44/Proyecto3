@@ -317,27 +317,35 @@ public class Principal {
 		LocalTime horai = LocalTime.now();
 		String titulo = input("Titulo");
 		String descripcion = input("Descripcion");
-		String tipo = noEstaTipo(tproyecto);
 		LocalDate fecha = LocalDate.now();
 		LocalDate fechaf = LocalDate.now();
 		LocalTime horaf = LocalTime.now();
 		Participante encargado = noEstaPar(tproyecto);
-		Actividad nuevaActividad = new Actividad(titulo, descripcion, tipo, fecha, fechaf, horai, 
+		Actividad nuevaActividad = new Actividad(titulo, descripcion, fecha, fechaf, horai, 
 				horaf, encargado);
 		tproyecto.agregarActividades(nuevaActividad);
-		System.out.println("Actividad agregada de forma exitosa, pulse enter");
-		Scanner teclado = new Scanner(System.in);
-		teclado.nextLine(); 
-		System.out.println("\n\t\tSe esta tomando el tiempo de la actividad, presione ENTER para continuar..."); //Mensaje en pantalla
-		teclado.nextLine();
-	    try
-	    {
-	    	nuevaActividad.setHoraf(LocalTime.now());
-			String duracion = nuevaActividad.calcularDuracion();
-			System.out.println("La duracion fue de " + duracion);
-	    }
-	    catch(Exception e)
-	    {}
+		String tareaasoc = input("Ingrese la tarea a la que corresponde esta actividad");
+		try {
+			Tarea selec = navegarArbolTarea(tproyecto.getRamas().get(0), tareaasoc);
+			selec.addActs(nuevaActividad);
+			System.out.println("Actividad agregada de forma exitosa, pulse enter");
+			Scanner teclado = new Scanner(System.in);
+			teclado.nextLine(); 
+			System.out.println("\n\t\tSe esta tomando el tiempo de la actividad, presione ENTER para continuar..."); //Mensaje en pantalla
+			teclado.nextLine();
+		    try
+		    {
+		    	nuevaActividad.setHoraf(LocalTime.now());
+				String duracion = nuevaActividad.calcularDuracion();
+				System.out.println("La duracion fue de " + duracion);
+		    }
+		    catch(Exception e)
+		    {}
+		}
+		catch (Exception e) {
+			System.out.println("No existe esta tarea dentro del WBS");
+		}
+		
 		
 	}
 	

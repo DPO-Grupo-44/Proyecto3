@@ -10,14 +10,14 @@ import java.time.format.DateTimeFormatter;
 public class Actividad {
 	private String titulo;
 	private String descripcion;
-	private String tipo;
+	
 	private LocalDate fecha;
 	private LocalDate fechaf;
 	private LocalTime horai;
 	private LocalTime horaf;
 	private Participante encargado;
 	
-	public Actividad (String ttitulo, String tdescripcion, String ttipo, LocalDate tfecha, LocalDate tfechaf,
+	public Actividad (String ttitulo, String tdescripcion, LocalDate tfecha, LocalDate tfechaf,
 			LocalTime thorai, LocalTime thoraf, Participante tparticipante) {
 		titulo = ttitulo;
 		descripcion = tdescripcion;
@@ -25,7 +25,7 @@ public class Actividad {
 		fechaf = tfechaf;
 		horai = thorai;
 		horaf = thoraf;
-		tipo = ttipo;
+		
 		encargado = tparticipante;
 	}
 	

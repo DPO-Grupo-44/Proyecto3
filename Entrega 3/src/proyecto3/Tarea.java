@@ -82,6 +82,10 @@ public class Tarea {
 		}
 	}
 	
+	public void addActs(Actividad act) {
+		asociadas.add(act);
+	}
+	
 	public boolean getProgreso() {
 		return terminada;
 	}
