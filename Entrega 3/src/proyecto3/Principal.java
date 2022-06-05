@@ -149,9 +149,32 @@ public class Principal {
 					Paquete subPaquete = new Paquete(nuevoNom, nuevoDes);
 					pack.AgregarPacks(subPaquete);
 				}
+			
 				
 			}
+			else if (queHacer == 2) {
+				int pos = mostrarPaquetes(pack.getPaquetes());
+				if (pos > -1) {
+					Paquete ubic = pack.getPaquetes().get(pos);
+					boolean haytareas = hayTareas(ubic);
+					if (haytareas) {
+						System.out.println("No se puede eliminar en la ubicación seleccionada");
+					}
+					else {
+						pack.EliminarPacks(ubic);
+					}
+				}
+				
+				else {
+					System.out.println("El paquete no tiene subpaquetes");
+				}
+			}
 		}
+		
+		else if (opcion_seleccionada == 4) {
+			
+		}
+		
 	}
 	
 	public void mostrarMenu()
@@ -407,6 +430,22 @@ public class Principal {
 		return respuesta;
 	}
 	
+	public int mostrarPaquetes(ArrayList<Paquete> proyectosdisp) {
+		int respuesta = -1;
+		if (proyectosdisp.size() > 0) {
+			System.out.println("Seleccione el paquete a eliminar");
+			for (int j=0;j<proyectosdisp.size();j++) {
+				System.out.println(j+"-" + " " + proyectosdisp.get(j).getNombre());
+			}
+			respuesta = Integer.parseInt(input("Numero"));
+			
+		}
+		
+		return respuesta;
+	}	
+		
+	
+	
 	public int mostrarActividades(ArrayList<Actividad> actividadesdisp) {
 		System.out.println("Seleccione la actividad de la que va a realizar cambios");
 		for (int j=0;j<actividadesdisp.size();j++) {
@@ -414,6 +453,24 @@ public class Principal {
 	    }
 		int respuesta = Integer.parseInt(input("Numero"));
 		return respuesta;
+	}
+	
+	public boolean hayTareas(Paquete pack) {
+		
+		ArrayList<Tarea> canttars = pack.getTareas();
+		ArrayList<Paquete> cantsubs = pack.getPaquetes();
+		if (canttars.size() > 0) {
+			
+			return true;
+		}
+		else { 
+			if (canttars.size() > 0) {
+			for (int j = 0; j < canttars.size(); j++) {
+				hayTareas(cantsubs.get(j));
+				}
+			}
+		}
+		return false;
 	}
 	
 	public Tarea navegarArbolTarea(Paquete pack, String cadena) {
