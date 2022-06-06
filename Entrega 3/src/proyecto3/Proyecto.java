@@ -1,27 +1,29 @@
  package proyecto3;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Proyecto {
 
 	private String nombre;
 	private String descripcion;
-	private LocalDateTime fechainicio;
-	private Participante dueño;
+	private LocalDate fechainicio;
+	private Participante dueno;
 	private ArrayList<Actividad> listaactividades;
 	private ArrayList<Participante> listaparticipantes;
 	private ArrayList<Paquete> listaplan;
-	private LocalDateTime fechafin;
+	private LocalDate fechafin;
 	private ArrayList<String> tipos;
 	
-	public Proyecto(String tnombre, String tdescripcion, LocalDateTime tfechai, 
-			Participante tdueño, LocalDateTime fechaf) {
+	public Proyecto(String tnombre, String tdescripcion, LocalDate fechainicio2, 
+			Participante tdueno, LocalDate fechafin2) {
 		nombre = tnombre;
 		descripcion = tdescripcion;
-		fechainicio = tfechai;
-		fechafin = fechaf;
-		dueño = tdueño;
+		fechainicio = fechainicio2;
+		fechafin = fechafin2;
+		dueno = tdueno;
 		listaparticipantes = new ArrayList<Participante>();
 		listaactividades = new ArrayList<Actividad>();
 		listaplan = new ArrayList<Paquete>();
@@ -40,14 +42,34 @@ public class Proyecto {
 		return nombre;
 	}
 	
+	public String getDescripcion() {
+		return descripcion;
+	}
 	
-	public LocalDateTime getFechaI() {
+	public Participante getDueno() {
+		return dueno;
+	}
+	
+	public LocalDate getFechaI() {
 		return fechainicio;
 	}
 	
-	public LocalDateTime getFechaF() {
+	public LocalDate getFechaF() {
 		return fechafin;
 	}
+	
+	public String getFechaIStr() {
+		String fechares = fechainicio.toString();
+		
+		return fechares;
+	}
+	
+	public String getFechaFStr() {
+		String fechares = fechafin.toString();
+		
+		return fechares;
+	}
+	
 	
 	public ArrayList<String> getTipos(){
 		return tipos;
@@ -57,8 +79,8 @@ public class Proyecto {
 		return listaparticipantes;
 	}
 
-	public void setDueño(Participante tdueño) {
-		dueño = tdueño;
+	public void setDueno(Participante tdueno) {
+		dueno = tdueno;
 	}
 	
 	public void agregarTipos(String ttipo) {

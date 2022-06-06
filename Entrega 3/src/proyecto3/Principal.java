@@ -33,7 +33,7 @@ public class Principal {
 			ArrayList<Proyecto> proyectosdisp = lab.getProyectos();
 			if (opcion_seleccionada == 1) {
 				cargar.leerArchivo_proyectos(lab);
-				cargar.leerArchivo_proyectos(lab);
+				cargar.leerArchivo_participantes(lab);
 			}	
 			else if (opcion_seleccionada == 2)
 			{
@@ -94,6 +94,7 @@ public class Principal {
 				if (modificar.toLowerCase().equals("paquete")) {
 					String cadena = input("Nombre del paquete");
 					Paquete res2 = navegarArbolPack(pack, cadena);
+					realizarModificacionesPack(res2);
 				}
 				else if (modificar.toLowerCase().equals("tarea")) {
 					String cadena = input("Nombre de la tarea");
@@ -126,7 +127,10 @@ public class Principal {
 		
 	}
 	
-	public void realizarModificacionesPack(Paquete pack, int opcion_seleccionada) {
+	public void realizarModificacionesPack(Paquete pack)
+	{
+		menuModificacionesPack();
+		int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opcion"));
 		if (opcion_seleccionada == 1) {
 			String nombre = input("Nuevo nombre");
 			pack.setNombre(nombre);
@@ -193,13 +197,13 @@ public class Principal {
 	public void crearnuevoProyecto() {
 		String nombreproy = input("Ingrese nombre de proyecto");
 		String descrproy = input("Ingrese la descripcion del proyecto");
-		Proyecto proyectoNuevo = new Proyecto(nombreproy, descrproy, LocalDateTime.now(),
-				null, LocalDateTime.now());
+		Proyecto proyectoNuevo = new Proyecto(nombreproy, descrproy, LocalDate.now(),
+				null, LocalDate.now());
 		lab.agregarProyectos(proyectoNuevo);
 		System.out.println("Agregue un dueño a su proyecto");
-		Participante dueño = crearnuevoParticipante();
-		proyectoNuevo.setDueño(dueño);
-		proyectoNuevo.agregarParticipantes(dueño);
+		Participante dueno = crearnuevoParticipante();
+		proyectoNuevo.setDueno(dueno);
+		proyectoNuevo.agregarParticipantes(dueno);
 		agregarTipos(proyectoNuevo);	
 		crearPlan(proyectoNuevo);
 		
@@ -325,9 +329,15 @@ public class Principal {
 				horaf, encargado);
 		tproyecto.agregarActividades(nuevaActividad);
 		String tareaasoc = input("Ingrese la tarea a la que corresponde esta actividad");
+		String termina = input("Con esta actividad se completa la tarea? (Si/No)");
+		
+		
 		try {
 			Tarea selec = navegarArbolTarea(tproyecto.getRamas().get(0), tareaasoc);
 			selec.addActs(nuevaActividad);
+			if (termina.equals("Si")) {
+				selec.setProgreso();
+			}
 			System.out.println("Actividad agregada de forma exitosa, pulse enter");
 			Scanner teclado = new Scanner(System.in);
 			teclado.nextLine(); 
@@ -408,10 +418,6 @@ public class Principal {
 	
 	}
 	
-	public ArrayList<String> buscarProyectos (Participante nombreparticipante){
-		
-		return null;
-	}
 	
 	
 	public String input(String mensaje)

@@ -21,7 +21,7 @@ public class Laboratorio {
 		Proyecto respuesta = null;
 		for (int i=0;i<listaProyectos.size();i++) {
 			String nombreproy = listaProyectos.get(i).getNombre();
-			if (nombreproy == nombre) {
+			if (nombreproy.equals(nombre)) {
 				respuesta = listaProyectos.get(i);
 			}
 		}
