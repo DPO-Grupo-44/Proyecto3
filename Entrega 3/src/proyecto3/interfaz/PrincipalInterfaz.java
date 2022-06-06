@@ -24,12 +24,13 @@ public class PrincipalInterfaz extends JFrame implements ActionListener{
 	
 	public final static String CREADOR = "Creador de Nuevos Proyectos";
 	public final static String RECARGA = "Recargar el proyecto creado";
+	public final static String WBS = "Editar diagrama WBS";
 	private PaginaProyectos paginaProyectos;
-	private Principal operaciones;
 	private panelProyecto PanelProyecto;
 	private CargaDeDatos calculadora;
 	private Laboratorio lab;
 	private CreadorProyectos creadorProyectos;
+	private PanelWBS panelWBS;
 	
 	public PrincipalInterfaz () throws Exception{
 		setLayout( new BorderLayout( ) );
@@ -49,7 +50,10 @@ public class PrincipalInterfaz extends JFrame implements ActionListener{
 		JPanel panelDerecha = new JPanel(new BorderLayout());
 		panelArriba.add(panelDerecha);
 		PanelProyecto = new panelProyecto();
-		panelDerecha.add(PanelProyecto, BorderLayout.CENTER);
+		panelDerecha.add(PanelProyecto, BorderLayout.NORTH);
+		
+		panelWBS = new PanelWBS();
+		panelDerecha.add(panelWBS, BorderLayout.CENTER);
 		
 		JPanel panelInferior = new JPanel(new BorderLayout());
 		add(panelInferior, BorderLayout.SOUTH);
@@ -62,6 +66,8 @@ public class PrincipalInterfaz extends JFrame implements ActionListener{
 		btnrecargarproy.setActionCommand(RECARGA);
 		btnrecargarproy.addActionListener(this);
 		panelInferior.add(btnrecargarproy, BorderLayout.EAST);
+		
+		
 		
 		setTitle( "Proyectos" );
 		setSize(1000, 700);

@@ -1,5 +1,6 @@
 package proyecto3.interfaz;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,7 +23,7 @@ public class panelProyecto extends JPanel implements ActionListener{
 
 	public final static String AGREGAR_PARTICIPANTE = "Agregar Participante";
 	public final static String AGREGAR_ACTIVIDAD = "Agregar Actividad";
-
+	public final static String WBS = "Editar diagrama WBS";
 
 
 	private Proyecto proyecto;
@@ -33,6 +34,7 @@ public class panelProyecto extends JPanel implements ActionListener{
 	private JTextField fechaf;
 	private JButton agregarParticipante;
 	private JButton AgregarActividad;
+	private JButton btnWBS;
 	
 	
 	public panelProyecto() {
@@ -59,6 +61,10 @@ public class panelProyecto extends JPanel implements ActionListener{
 		AgregarActividad = new JButton(AGREGAR_ACTIVIDAD);
 		AgregarActividad.setActionCommand(AGREGAR_ACTIVIDAD);
 		AgregarActividad.addActionListener(this);
+		
+		btnWBS = new JButton("Editar Diagrama WBS");
+		btnWBS.setActionCommand(WBS);
+		btnWBS.addActionListener(this);
 		
 		
 		setLayout(new GridBagLayout());
@@ -98,6 +104,9 @@ public class panelProyecto extends JPanel implements ActionListener{
 		
 		gc.gridy++;
 		add(AgregarActividad, gc);
+		
+		gc.gridy++;
+		add(btnWBS, gc);
 
 		
 	}
@@ -128,6 +137,11 @@ public class panelProyecto extends JPanel implements ActionListener{
 		}
 		else if (e.getActionCommand().equals(AGREGAR_PARTICIPANTE)){
 			
+		}
+		
+		else if (e.getActionCommand().equals(WBS)) {
+			PanelPrincipalWBS nueva = new PanelPrincipalWBS();
+			nueva.setVisible(true);
 		}
 		
 		
